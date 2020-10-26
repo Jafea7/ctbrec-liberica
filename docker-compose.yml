@@ -1,0 +1,12 @@
+version: '2.1'
+services:
+# CTBRec streaming recorder
+  ctbrec:
+    image: "jafea7/ctbrec-liberica"
+    container_name: "CTBRec-Jafea7"
+    volumes:
+      - "${CONFIG}:/root/.config"
+      - "${MEDIA}:/root/ctbrec"
+    environment:
+      TZ: ${TZ}
+    restart: "unless-stopped"
