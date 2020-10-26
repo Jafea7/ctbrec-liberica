@@ -5,7 +5,7 @@
 #
 
 # Pull base image.
-FROM bellsoft/liberica-openjdk-alpine
+FROM bellsoft/liberica-openjdk-alpine:latest-armv7l
 
 # Update and install bash, ffmpeg, and mediainfo
 RUN apk update
