@@ -11,11 +11,6 @@ FROM bellsoft/liberica-openjdk-alpine
 RUN apk update
 RUN apk add bash ffmpeg mediainfo
 
-# Args: CTBRec version and memory required,
-# (passed from build command)
-ARG version
-ARG memory
-
 # Copy CTBRec server jar and playlist generator
 COPY rootfs/ /
 RUN chmod +x /playlist.sh
