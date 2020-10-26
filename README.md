@@ -21,7 +21,6 @@ CTBRec is a streaming media recorder.
       * [Docker Image Update](#docker-image-update)
          * [Synology](#synology)
          * [unRAID](#unraid)
-      * [User/Group IDs](#usergroup-ids)
       * [Accessing the GUI](#accessing-the-gui)
       * [Shell Access](#shell-access)
       * [Default Web Interface Access](#default-web-interface-access)
