@@ -204,6 +204,11 @@ interface of the application can be accessed with a web browser at:
 ```
 http://<HOST IP ADDR>:8080
 ```
+Or if TLS is enabled:
+
+```
+https://<HOST IP ADDR>:8443
+```
 
 ## Shell Access
 
