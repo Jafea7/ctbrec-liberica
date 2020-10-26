@@ -5,6 +5,8 @@ services:
     image: "jafea7/ctbrec-liberica"
     container_name: "CTBRec-Jafea7"
     volumes:
-      - "/root/.config:/root/.config"
-      - "/root/ctbrec:/root/ctbrec"
+      - "${CONFIG}:/root/.config"
+      - "${MEDIA}:/root/ctbrec"
+    environment:
+      TZ: ${TZ}
     restart: "unless-stopped"
