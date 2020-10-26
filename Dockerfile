@@ -18,7 +18,6 @@ ARG memory
 
 # Copy CTBRec server jar and playlist generator
 COPY rootfs/ /
-RUN mv /ctbrec-server-${version}-final.jar /app.jar
 RUN chmod +x /playlist.sh
 
 # Create ffmpeg folder and symlink to executable
