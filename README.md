@@ -47,9 +47,9 @@ Where:
   - `/media`:        This is where the application stores recordings.
   - `TZ`:            The timezone you want the application to use, files created will be referenced to this.
 
-Browse to `http://your-host-ip:8080` to access the CTBRec web interface.
-**NOTE**: The web interface needs to be enabled in the server.json config file before it can be used.  After starting the container, wait a minute then stop it, then edit the `server.json` file to enable it:
-`"webinterface": true,`
+Browse to `http://your-host-ip:8080` to access the CTBRec web interface, (or `https://your-host-ip:8443` if TLS is enabled).
+
+**NOTE**: The web interface needs to be enabled in the `server.json` config file before it can be used.  After starting the container, wait a minute then stop it, then edit the `server.json` file to enable it: `"webinterface": true,`
 
 ## Usage
 
@@ -185,8 +185,9 @@ container image.
   8.  Stop it by clicking *Action*->*Stop*.
   9.  Clear the container by clicking *Action*->*Clear*.  This removes the
       container while keeping its configuration.
-  10. Start the container again by clicking *Action*->*Start*. **NOTE**:  The
-      container may temporarily disappear from the list while it is re-created.
+  10. Start the container again by clicking *Action*->*Start*.
+  
+  **NOTE**:  The container may temporarily disappear from the list while it is re-created.
 
 ### unRAID
 
