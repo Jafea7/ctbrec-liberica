@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: bellsoft/liberica-openjdk-alpine
+    runs-on: ubuntu-latest
     steps:
       -
         name: Checkout
