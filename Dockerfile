@@ -5,7 +5,7 @@
 #
 
 # Pull base image.
-FROM bellsoft/liberica-openjdk-alpine:latest-aarch64
+FROM bellsoft/liberica-openjdk-alpine
 
 # Update and install bash, ffmpeg, and mediainfo
 RUN apk update
@@ -17,7 +17,7 @@ RUN chmod +x /playlist.sh
 
 # Create ffmpeg folder and symlink to executable
 # CTBRec expects it in /ffmpeg w.r.t. .jar file
-# for single file recording
+# for single file recording and post-processing
 RUN mkdir /ffmpeg
 RUN ln -s /usr/bin/ffmpeg /ffmpeg/ffmpeg
 

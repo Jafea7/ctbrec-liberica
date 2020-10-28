@@ -233,6 +233,7 @@ Modify the username/password in the server.json file when the container is stopp
 
 ## Extras
 
+---
 `/playlist.sh` - A Bash script that creates a playlist.m3u8 faster than CTBRec by using mediainfo to obtain the duration of the first segment and applying it to all the following.
 **NOTE**: It only accepts a directory as input, it will exit for anything else.
 
@@ -249,3 +250,4 @@ Called as the first step in post-processing as follows:
 ```
 
 In the settings for the server change `Generate Playlist` to `false`.
+---
