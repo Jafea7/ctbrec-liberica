@@ -24,6 +24,7 @@ CTBRec is a streaming media recorder.
       * [Accessing the GUI](#accessing-the-gui)
       * [Shell Access](#shell-access)
       * [Default Web Interface Access](#default-web-interface-access)
+      * [Extras](#extras)
 
 ## Quick Start
 
@@ -229,3 +230,22 @@ After a fresh install and the web interface is enabled, the default login is:
   - Password: `sucks`
 
 Modify the username/password in the server.json file when the container is stopped.
+
+## Extras
+
+`/playlist.sh` - A Bash script that creates a playlist.m3u8 faster than CTBRec by using mediainfo to obtain the duration of the first segment and applying it to all the following.
+**NOTE**: It only accepts a directory as input, it will exit for anything else.
+
+Called as the first step in post-processing as follows:
+```
+  "postProcessors": [
+    {
+      "type": "ctbrec.recorder.postprocessing.Script",
+      "config": {
+        "script.params": "${absolutePath}",
+        "script.executable": "/playlist.sh"
+      }
+    },
+```
+
+In the settings for the server change `Generate Playlist` to `false`.
