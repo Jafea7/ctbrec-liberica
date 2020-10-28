@@ -44,7 +44,7 @@ docker run -d \
 ```
 
 Where:
-  - `/root/.config`: This is where the application stores its configuration, log and any files needing persistency.
+  - `/root/.config`: This is where the application stores its configuration and any files needing persistency.
   - `/media`:        This is where the application stores recordings.
   - `TZ`:            The timezone you want the application to use, files created will be referenced to this.
 
