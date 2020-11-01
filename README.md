@@ -39,13 +39,17 @@ docker run -d \
     -p 8443:8443 \
     -v /media:/root/ctbrec:rw \
     -v /root/.config:/root/.config:rw \
-    -e TZ=Austalia/Sydney
+    -e TZ=Austalia/Sydney \
+    -e PUID=1000 \
+    -e PGID=1000 \
     jafea7/ctbrec-liberica
 ```
 
 Where:
   - `/root/.config`: This is where the application stores its configuration and any files needing persistency.
   - `/media`:        This is where the application stores recordings.
+  - `PUID`:          The User ID you want it to run under.
+  - `PGID`:          The Group ID you want it to run under.
   - `TZ`:            The timezone you want the application to use, files created will be referenced to this.
 
 Browse to `http://your-host-ip:8080` to access the CTBRec web interface, (or `https://your-host-ip:8443` if TLS is enabled).
@@ -77,6 +81,8 @@ of this parameter has the format `<VARIABLE_NAME>=<VALUE>`.
 
 | Variable       | Description                                  | Default |
 |----------------|----------------------------------------------|---------|
+|`PUID`| [PUID] User ID to run CTBRec with.|
+|`PGID` [PGID] Group ID to run CTBRec with.|
 |`TZ`| [TimeZone] of the container.  Timezone can also be set by mapping `/etc/localtime` between the host and the container. | `Etc/UTC` |
 
 ### Data Volumes
@@ -143,7 +149,9 @@ services:
     image: jafea7/ctbrec-liberica
     build: .
     environment:
-      - TZ:Australia/Sydney
+      - PUID=1000
+      - PGID=1000
+      - TZ=Australia/Sydney
     ports:
       - "8080:8080"
       - "8443:8443"
@@ -250,4 +258,10 @@ Called as the first step in post-processing as follows:
 ```
 
 In the settings for the server change `Generate Playlist` to `false`.
+
+**NOTE**: A new start of the image will include a default server.json with the following options set:
+  - Web Interface set to true.
+  - The above script set as the initial post-processing.
+  - The internal playlist generation disabled.
+  
 ---
