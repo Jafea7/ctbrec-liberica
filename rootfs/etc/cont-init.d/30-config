@@ -9,6 +9,8 @@ chown -R ctbrec:ctbrec /config
 chmod u+rw /config/server.json
 chown -R ctbrec:ctbrec /app
 
+# Symlink ffmpeg into where CTBRec expects it
 ln -s /usr/bin/ffmpeg /app/ffmpeg/ffmpeg
 
+# Run the server using UID/GID of user
 s6-setuidgid ctbrec /app/start.sh

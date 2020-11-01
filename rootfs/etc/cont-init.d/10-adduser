@@ -6,6 +6,8 @@ PUID=${PUID:-911}
 PGID=${PGID:-911}
 
 addgroup ctbrec -g $PGID
+
+# No password, no default home dir setup, blank GECOS
 adduser -D -g "" -h /app -G ctbrec -H -u $PUID ctbrec
 
 echo "

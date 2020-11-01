@@ -63,7 +63,7 @@
       "type": "ctbrec.recorder.postprocessing.Script",
       "config": {
         "script.params": "${absolutePath}",
-        "script.executable": "/app/playlist.sh"
+        "script.executable": "/playlist.sh"
       }
     }
   ],
