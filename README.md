@@ -93,8 +93,8 @@ format: `<HOST_DIR>:<CONTAINER_DIR>[:PERMISSIONS]`.
 
 | Container path  | Permissions | Description |
 |-----------------|-------------|-------------|
-|`/root/.config`| rw | This is where the application stores its configuration, log and any files needing persistency. |
-|`/root/ctbrec`| rw | This is where the application stores recordings. |
+|`/config`| rw | This is where the application stores its configuration, log and any files needing persistency. |
+|`/app/captures`| rw | This is where the application stores recordings. |
 
 ### Ports
 
