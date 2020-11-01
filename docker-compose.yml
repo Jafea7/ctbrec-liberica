@@ -12,6 +12,6 @@ services:
       - "${CONFIG}:/config"
       - "${MEDIA}:/app/captures"
     ports:
-      - 11080:8080
-      - 11443:8443
+      - 8080:8080
+      - 8443:8443
     restart: "unless-stopped"
