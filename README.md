@@ -37,8 +37,8 @@ docker run -d \
     --name=ctbrec-liberica \
     -p 8080:8080 \
     -p 8443:8443 \
-    -v /media:/root/ctbrec:rw \
-    -v /root/.config:/root/.config:rw \
+    -v /media:/app/captures:rw \
+    -v /root/.config:/config:rw \
     -e TZ=Austalia/Sydney \
     -e PUID=1000 \
     -e PGID=1000 \
