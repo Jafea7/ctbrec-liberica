@@ -156,8 +156,8 @@ services:
       - "8080:8080"
       - "8443:8443"
     volumes:
-      - "/root/.config:/root/.config:rw"
-      - "/media:/root/ctbrec:rw"
+      - "/root/.config:/config:rw"
+      - "/media:/app/captures:rw"
 ```
 
 ## Docker Image Update
