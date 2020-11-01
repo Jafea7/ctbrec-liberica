@@ -1,1 +1,1 @@
-/config true ctbrec,${PUID}:${PGID} 0644 0755
+/config true ctbrec,${PUID}:${PGID} 0666 0777
