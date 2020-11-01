@@ -259,7 +259,7 @@ Called as the first step in post-processing as follows:
 
 In the settings for the server change `Generate Playlist` to `false`.
 
-**NOTE**: A new start of the image will include a default server.json with the following options set:
+**NOTE**: A new start of the image will include a default server.json, (if it doesn't exist already), with the following options set:
   - Web Interface set to true.
   - The above script set as the initial post-processing.
   - The internal playlist generation disabled.
