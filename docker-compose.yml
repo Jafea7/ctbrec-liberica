@@ -4,7 +4,14 @@ services:
   ctbrec:
     image: "jafea7/ctbrec-liberica"
     container_name: "CTBRec-Jafea7"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
     volumes:
-      - "/root/.config:/root/.config"
-      - "/root/ctbrec:/root/ctbrec"
+      - "${CONFIG}:/config"
+      - "${MEDIA}:/app/captures"
+    ports:
+      - 11080:8080
+      - 11443:8443
     restart: "unless-stopped"

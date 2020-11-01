@@ -1,0 +1,21 @@
+#!/usr/bin/with-contenv sh
+
+echo "$PGID - $PUID"
+
+PUID=${PUID:-911}
+PGID=${PGID:-911}
+
+addgroup ctbrec -g $PGID
+adduser -D -g "" -h /app -G ctbrec -H -u $PUID ctbrec
+
+echo "
+-------------------------------------
+GID/UID
+-------------------------------------
+User uid:    $(id -u ctbrec)
+User gid:    $(id -g ctbrec)
+-------------------------------------
+"
+chown ctbrec:ctbrec /app
+chown ctbrec:ctbrec /config
+chown ctbrec:ctbrec /defaults

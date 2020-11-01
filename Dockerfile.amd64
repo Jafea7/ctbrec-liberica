@@ -1,0 +1,34 @@
+#
+# ctbrec-liberica Dockerfile
+#
+# https://github.com/jafea7/ctbrec-liberica
+#
+
+# Pull base image.
+FROM bellsoft/liberica-openjdk-alpine:latest-x86_64
+
+# Install ffmpeg
+RUN apk --no-cache add ffmpeg tzdata
+
+# Install s6-overlay
+ARG S6_OVERLAY_VERSION="v2.1.0.2"
+
+RUN apk --no-cache add libressl \
+  && wget -qO - https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar zxf - -C / \
+  && apk --no-cache del libressl
+
+# Copy CTBRec server jar and playlist generator
+COPY rootfs/ /
+RUN chmod +x /app/playlist.sh
+
+# Create the volumes
+VOLUME [ "/app/captures", "/config" ]
+
+# Expose server non-SSL and SSL ports
+EXPOSE 8080 8443
+
+# Initialise
+ENTRYPOINT ["/init"]
+
+# Start the program
+CMD ["/app/start.sh"]

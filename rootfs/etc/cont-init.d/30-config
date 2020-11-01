@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv sh
+
+# Check if config exists in /config, copy if not
+[[ ! -e /config/server.json ]] && \
+        cp /defaults/server.json /config/server.json
+
+# Permissions
+chown -R ctbrec:ctbrec /config
+chmod u+rw /config/server.json
+chown -R ctbrec:ctbrec /app
+
+ln -s /usr/bin/ffmpeg /app/ffmpeg/ffmpeg
+
+s6-setuidgid ctbrec /app/start.sh
