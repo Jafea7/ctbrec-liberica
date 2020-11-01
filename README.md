@@ -82,7 +82,7 @@ of this parameter has the format `<VARIABLE_NAME>=<VALUE>`.
 | Variable       | Description                                  | Default |
 |----------------|----------------------------------------------|---------|
 |`PUID`| [PUID] User ID to run CTBRec with.|
-|`PGID` [PGID] Group ID to run CTBRec with.|
+|`PGID`| [PGID] Group ID to run CTBRec with.|
 |`TZ`| [TimeZone] of the container.  Timezone can also be set by mapping `/etc/localtime` between the host and the container. | `Etc/UTC` |
 
 ### Data Volumes
