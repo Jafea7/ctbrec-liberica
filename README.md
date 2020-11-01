@@ -128,10 +128,10 @@ docker rm ctbrec-liberica
   3. Create/start the container using the `docker run` command, by adjusting
      parameters as needed.
 
-**NOTE**: Since all application's data is saved under the `/root/.config` and
-`/root/ctbrec` container folder, destroying and re-creating a container is not
+**NOTE**: Since all application's data is saved under the `/config` and
+`/app/captures` container folder, destroying and re-creating a container is not
 a problem: nothing is lost and the application comes back with the same state
-(as long as the mapping of the `/root/.config` and `/root/ctbrec` folders
+(as long as the mapping of the `/config` and `/app/captures` folders
 remain the same).
 
 ## Docker Compose File
