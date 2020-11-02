@@ -164,7 +164,7 @@ services:
       - "8080:8080"
       - "8443:8443"
     volumes:
-      - "/home/ctbrec/.config/config:/app/config:rw"
+      - "/home/ctbrec/.config/ctbrec:/app/config:rw"
       - "/home/ctbrec/media:/app/captures:rw"
 ```
 
