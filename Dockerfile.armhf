@@ -11,13 +11,13 @@ FROM bellsoft/liberica-openjdk-alpine:latest-armv7l
 RUN apk add --no-cache ffmpeg tzdata
 
 # Install s6-overlay
-ARG S6_OVERLAY_VERSION="v2.1.0.2"
+ARG OVERLAY_VERSION="v2.1.0.2"
+ARG OVERLAY_ARCH="arm"
 
-RUN apk --no-cache add libressl \
-  && wget -qO - https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-armhf.tar.gz | tar zxf - -C / \
-  && apk --no-cache del libressl
+ADD https://github.com/just-containers/s6-overlay/releases/download/${OVERLAY_VERSION}/s6-overlay-${OVERLAY_ARCH}-installer /tmp/
+RUN chmod +x /tmp/s6-overlay-${OVERLAY_ARCH}-installer && /tmp/s6-overlay-${OVERLAY_ARCH}-installer / && rm /tmp/s6-overlay-${OVERLAY_ARCH}-installer
 
-# Copy CTBRec server jar and playlist generator
+# Copy the rootfs layout including files
 COPY rootfs/ /
 
 # Create the volumes
