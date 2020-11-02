@@ -21,7 +21,7 @@ RUN apk --no-cache add libressl \
 COPY rootfs/ /
 
 # Create the volumes
-VOLUME [ "/app/captures", "/config" ]
+VOLUME [ "/app/captures", "/app/config" ]
 
 # Expose server non-SSL and SSL ports
 EXPOSE 8080 8443
