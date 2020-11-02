@@ -65,6 +65,13 @@
         "script.params": "${absolutePath}",
         "script.executable": "/playlist.sh"
       }
+    },
+    {
+      "type": "ctbrec.recorder.postprocessing.Remux",
+      "config": {
+        "ffmpeg.args": "-c:v copy -c:a copy -bsf:a aac_adtstoasc -f mp4",
+        "file.ext": "mp4"
+      }
     }
   ],
   "proxyType": "DIRECT",
