@@ -10,6 +10,8 @@ CTBRec is a streaming media recorder.
 ---
 
 `/root/.config` is now `/app/config`, `/root/captures` is now `/app/captures`
+You will also need to edit your server.json file to change the recordings directory as follows:
+`"recordingsDir": "/app/captures",`.
 
 Your recordings will disappear from the `Recordings` tab if you do not update the volumes, (the recordings themselves will not be deleted, just the record).
 
