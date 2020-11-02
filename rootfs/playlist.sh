@@ -28,4 +28,4 @@ done
  
 printf '%s' $trailer >> playlist.m3u8
 
-/usr/bin/ffmpeg -i playlist.m3u8 -c:v copy -c:a copy "../$(basename $1).ts"
+# /usr/bin/ffmpeg -i playlist.m3u8 -c:v copy -c:a copy "../$(basename $1).ts"
