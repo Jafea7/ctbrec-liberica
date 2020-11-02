@@ -45,7 +45,7 @@ docker run -d \
     -p 8080:8080 \
     -p 8443:8443 \
     -v /home/ctbrec/media:/app/captures:rw \
-    -v /home/ctbrec/.config:/app/config:rw \
+    -v /home/ctbrec/.config/ctbrec:/app/config:rw \
     -e TZ=Australia/Sydney \
     -e PUID=1000 \
     -e PGID=1000 \
@@ -53,11 +53,11 @@ docker run -d \
 ```
 
 Where:
-  - `/home/ctbrec/.config`: This is where the application stores its configuration and any files needing persistency.
-  - `/home/ctbrec/media`:   This is where the application stores recordings.
-  - `PUID`:                 The User ID you want it to run under.
-  - `PGID`:                 The Group ID you want it to run under.
-  - `TZ`:                   The timezone you want the application to use, files created will be referenced to this.
+  - `/home/ctbrec/.config/ctbrec`: This is where the application stores its configuration and any files needing persistency.
+  - `/home/ctbrec/media`:          This is where the application stores recordings.
+  - `PUID`:                        The User ID you want it to run under.
+  - `PGID`:                        The Group ID you want it to run under.
+  - `TZ`:                          The timezone you want the application to use, files created will be referenced to this.
 
 Browse to `http://your-host-ip:8080` to access the CTBRec web interface, (or `https://your-host-ip:8443` if TLS is enabled).
 
@@ -163,7 +163,7 @@ services:
       - "8080:8080"
       - "8443:8443"
     volumes:
-      - "/home/ctbrec/.config:/app/config:rw"
+      - "/home/ctbrec/.config/config:/app/config:rw"
       - "/home/ctbrec/media:/app/captures:rw"
 ```
 
