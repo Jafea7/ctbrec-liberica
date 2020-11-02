@@ -249,13 +249,13 @@ Modify the username/password in the server.json file when the container is stopp
 
 **NOTE**: A fresh start of the image will include a default server.json, (if it doesn't exist already), with the following options set:
   - Web Interface set to true.
-  - The `playlist.sh` script set as the initial post-processing.
+  - `playlist.sh`, (see below), followed by a remux is set as post-processing, edit it to add or remove any steps.
   - The internal playlist generation disabled.
 
 ## Extras
 
 ---
-`/playlist.sh` - A Bash script that creates a playlist.m3u8 faster than CTBRec by using mediainfo to obtain the duration of the first segment and applying it to all the following.
+`/playlist.sh` - A shell script that creates a playlist.m3u8 faster than CTBRec by using ffprobe to obtain the duration of the first segment and applying it to all the following.
 **NOTE**: It only accepts a directory as input, it will exit for anything else.
 
 Called as the first step in post-processing as follows:
