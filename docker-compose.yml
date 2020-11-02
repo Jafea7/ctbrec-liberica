@@ -9,7 +9,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - "${CONFIG}:/config"
+      - "${CONFIG}:/app/config"
       - "${MEDIA}:/app/captures"
     ports:
       - 8080:8080

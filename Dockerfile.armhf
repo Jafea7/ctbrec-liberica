@@ -19,7 +19,6 @@ RUN apk --no-cache add libressl \
 
 # Copy CTBRec server jar and playlist generator
 COPY rootfs/ /
-RUN chmod +x /playlist.sh
 
 # Create the volumes
 VOLUME [ "/app/captures", "/config" ]

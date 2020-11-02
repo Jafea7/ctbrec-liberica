@@ -37,8 +37,8 @@ docker run -d \
     --name=ctbrec-liberica \
     -p 8080:8080 \
     -p 8443:8443 \
-    -v /media:/app/captures:rw \
-    -v /root/.config:/config:rw \
+    -v /home/ctbrec/media:/app/captures:rw \
+    -v /home/ctbrec/.config:/app/config:rw \
     -e TZ=Austalia/Sydney \
     -e PUID=1000 \
     -e PGID=1000 \
@@ -46,11 +46,11 @@ docker run -d \
 ```
 
 Where:
-  - `/root/.config`: This is where the application stores its configuration and any files needing persistency.
-  - `/media`:        This is where the application stores recordings.
-  - `PUID`:          The User ID you want it to run under.
-  - `PGID`:          The Group ID you want it to run under.
-  - `TZ`:            The timezone you want the application to use, files created will be referenced to this.
+  - `/home/ctbrec/.config`: This is where the application stores its configuration and any files needing persistency.
+  - `/home/ctbrec/media`:   This is where the application stores recordings.
+  - `PUID`:                 The User ID you want it to run under.
+  - `PGID`:                 The Group ID you want it to run under.
+  - `TZ`:                   The timezone you want the application to use, files created will be referenced to this.
 
 Browse to `http://your-host-ip:8080` to access the CTBRec web interface, (or `https://your-host-ip:8443` if TLS is enabled).
 
@@ -93,7 +93,7 @@ format: `<HOST_DIR>:<CONTAINER_DIR>[:PERMISSIONS]`.
 
 | Container path  | Permissions | Description |
 |-----------------|-------------|-------------|
-|`/config`| rw | This is where the application stores its configuration, log and any files needing persistency. |
+|`/app/config`| rw | This is where the application stores its configuration, log and any files needing persistency. |
 |`/app/captures`| rw | This is where the application stores recordings. |
 
 ### Ports
@@ -156,8 +156,8 @@ services:
       - "8080:8080"
       - "8443:8443"
     volumes:
-      - "/root/.config:/config:rw"
-      - "/media:/app/captures:rw"
+      - "/home/ctbrec/.config:/app/config:rw"
+      - "/home/ctbrec/media:/app/captures:rw"
 ```
 
 ## Docker Image Update
@@ -239,6 +239,11 @@ After a fresh install and the web interface is enabled, the default login is:
 
 Modify the username/password in the server.json file when the container is stopped.
 
+**NOTE**: A fresh start of the image will include a default server.json, (if it doesn't exist already), with the following options set:
+  - Web Interface set to true.
+  - The `playlist.sh` script set as the initial post-processing.
+  - The internal playlist generation disabled.
+
 ## Extras
 
 ---
@@ -258,10 +263,5 @@ Called as the first step in post-processing as follows:
 ```
 
 In the settings for the server change `Generate Playlist` to `false`.
-
-**NOTE**: A new start of the image will include a default server.json, (if it doesn't exist already), with the following options set:
-  - Web Interface set to true.
-  - The above script set as the initial post-processing.
-  - The internal playlist generation disabled.
   
 ---

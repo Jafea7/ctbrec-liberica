@@ -1,16 +1,19 @@
 #!/usr/bin/with-contenv sh
 
 # Check if config exists in /config, copy if not
-[[ ! -e /config/server.json ]] && \
-        cp /defaults/server.json /config/server.json
+[[ ! -e /app/config/server.json ]] && \
+        cp /defaults/server.json /app/config/server.json
 
 # Permissions
-chown -R ctbrec:ctbrec /config
-chmod u+rw /config/server.json
+#chown -R ctbrec:ctbrec /config
+chmod u+rw /app/config/server.json
 chown -R ctbrec:ctbrec /app
 
 # Symlink ffmpeg into where CTBRec expects it
 ln -s /usr/bin/ffmpeg /app/ffmpeg/ffmpeg
+
+chmod +x /playlist.sh
+chmod +x /dailylist.sh
 
 # Run the server using UID/GID of user
 s6-setuidgid ctbrec /app/start.sh

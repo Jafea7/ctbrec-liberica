@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+# NOTE: WIP
+
 # $1 = /path/to/recordings/plus_as_much_filespec_as_needed_${localDateTime(yyy--MM--dd)}*.${fileSuffix}
 # file = $(basename $1)
 # dir = $(dirname $1)

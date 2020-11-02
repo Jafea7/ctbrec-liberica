@@ -18,6 +18,5 @@ User uid:    $(id -u ctbrec)
 User gid:    $(id -g ctbrec)
 -------------------------------------
 "
-chown ctbrec:ctbrec /app
-chown ctbrec:ctbrec /config
+chown -R ctbrec:ctbrec /app
 chown ctbrec:ctbrec /defaults
