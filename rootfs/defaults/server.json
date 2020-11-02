@@ -53,7 +53,7 @@
   "models": [],
   "modelsIgnored": [],
   "onlineCheckIntervalInSecs": 10,
-  "onlineCheckSkipsPausedModels": false,
+  "onlineCheckSkipsPausedModels": true,
   "overviewUpdateIntervalInSecs": 10,
   "password": "",
   "postProcessing": "",
