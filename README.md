@@ -39,7 +39,7 @@ docker run -d \
     -p 8443:8443 \
     -v /home/ctbrec/media:/app/captures:rw \
     -v /home/ctbrec/.config:/app/config:rw \
-    -e TZ=Austalia/Sydney \
+    -e TZ=Australia/Sydney \
     -e PUID=1000 \
     -e PGID=1000 \
     jafea7/ctbrec-liberica
