@@ -6,14 +6,14 @@
 CTBRec is a streaming media recorder.
 
 ---
-**NOTE**: Volumes have changed since initial version, (part of implementing PUID/PGID), see the example `docker run` and `docker-compose.yml` below.
+**NOTE**: Volumes have changed since initial version, (due to implementing PUID/PGID), see the example `docker run` and `docker-compose.yml` below.
 ---
 
 `/root/.config` is now `/app/config`, `/root/captures` is now `/app/captures`
 You will also need to edit your server.json file to change the recordings directory as follows:
 `"recordingsDir": "/app/captures",`.
 
-Your recordings will disappear from the `Recordings` tab if you do not update the volumes, (the recordings themselves will not be deleted, just the record), **and the corresponding JSON file updated** with the new path, eg. `/app/captures/.....`
+Your recordings will disappear from the `Recordings` tab if you do not update the volumes, (the recordings themselves will not be deleted, just the record), **and the corresponding JSON file updated** with the new paths, eg. `/app/captures/.....` and `/app/config/.....` instead of `/root/captures/.....` and `/root/.config/.....`
 
 ---
 
