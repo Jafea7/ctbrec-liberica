@@ -13,7 +13,7 @@ CTBRec is a streaming media recorder.
 You will also need to edit your server.json file to change the recordings directory as follows:
 `"recordingsDir": "/app/captures",`.
 
-Your recordings will disappear from the `Recordings` tab if you do not update the volumes, (the recordings themselves will not be deleted, just the record).
+Your recordings will disappear from the `Recordings` tab if you do not update the volumes, (the recordings themselves will not be deleted, just the record), **and the corresponding JSON file updated** with the new path, eg. `/app/captures/.....`
 
 ---
 
