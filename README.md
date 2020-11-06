@@ -50,16 +50,12 @@ docker run -d \
     -v /home/ctbrec/media:/app/captures:rw \
     -v /home/ctbrec/.config/ctbrec:/app/config:rw \
     -e TZ=Australia/Sydney \
-    -e PUID=1000 \
-    -e PGID=1000 \
     jafea7/ctbrec-liberica
 ```
 
 Where:
   - `/home/ctbrec/.config/ctbrec`: This is where the application stores its configuration and any files needing persistency.
   - `/home/ctbrec/media`:          This is where the application stores recordings.
-  - `PUID`:                        The User ID you want it to run under.
-  - `PGID`:                        The Group ID you want it to run under.
   - `TZ`:                          The timezone you want the application to use, files created will be referenced to this.
 
 Browse to `http://your-host-ip:8080` to access the CTBRec web interface, (or `https://your-host-ip:8443` if TLS is enabled).
@@ -91,8 +87,6 @@ of this parameter has the format `<VARIABLE_NAME>=<VALUE>`.
 
 | Variable       | Description                                  | Default |
 |----------------|----------------------------------------------|---------|
-|`PUID`| [PUID] User ID to run CTBRec with.|
-|`PGID`| [PGID] Group ID to run CTBRec with.|
 |`TZ`| [TimeZone] of the container.  Timezone can also be set by mapping `/etc/localtime` between the host and the container. | `Etc/UTC` |
 
 ### Data Volumes
@@ -159,8 +153,6 @@ services:
     image: jafea7/ctbrec-liberica
     build: .
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Australia/Sydney
     ports:
       - "8080:8080"

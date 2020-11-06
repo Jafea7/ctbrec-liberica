@@ -4,3 +4,5 @@ LICENSE
 README.md
 Dockerfile*
 docker-compose.yml
+/rootfs/etc
+/rootfs/make_caps.sh

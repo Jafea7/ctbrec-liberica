@@ -5,8 +5,6 @@ services:
     image: "jafea7/ctbrec-liberica"
     container_name: "CTBRec-Jafea7"
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
       - TZ=${TZ}
     volumes:
       - "${CONFIG}/ctbrec:/app/config"

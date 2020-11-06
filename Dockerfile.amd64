@@ -10,13 +10,6 @@ FROM bellsoft/liberica-openjdk-alpine:latest-x86_64
 # Install ffmpeg
 RUN apk --no-cache add ffmpeg tzdata
 
-# Install s6-overlay
-ARG OVERLAY_VERSION="v2.1.0.2"
-ARG OVERLAY_ARCH="amd64"
-
-ADD https://github.com/just-containers/s6-overlay/releases/download/${OVERLAY_VERSION}/s6-overlay-${OVERLAY_ARCH}-installer /tmp/
-RUN chmod +x /tmp/s6-overlay-${OVERLAY_ARCH}-installer && /tmp/s6-overlay-${OVERLAY_ARCH}-installer / && rm /tmp/s6-overlay-${OVERLAY_ARCH}-installer
-
 # Copy the rootfs layout including files
 COPY rootfs/ /
 
@@ -27,7 +20,4 @@ VOLUME [ "/app/captures", "/app/config" ]
 EXPOSE 8080 8443
 
 # Initialise
-ENTRYPOINT ["/init"]
-
-# Start the program
-CMD ["/app/start.sh"]
+ENTRYPOINT ["/app/start.sh"]
