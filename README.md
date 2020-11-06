@@ -6,7 +6,7 @@
 CTBRec is a streaming media recorder.
 
 ---
-**NOTE**: Volumes have changed since initial version, (due to implementing PUID/PGID), see the example `docker run` and `docker-compose.yml` below.
+**NOTE**: Volumes have changed since initial version, (due to trying to implement PUID/PGID), see the example `docker run` and `docker-compose.yml` below.
 ---
 
 `/root/.config` is now `/app/config`, `/root/captures` is now `/app/captures`
