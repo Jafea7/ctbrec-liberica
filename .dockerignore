@@ -1,8 +1,11 @@
-config/*
-media/*
-LICENSE
-README.md
+.git\*
+.github\*
+config\*
+media\*
+rootfs\etc
+rootfs\make_caps.sh
+.env
 Dockerfile*
 docker-compose.yml
-/rootfs/etc
-/rootfs/make_caps.sh
+LICENSE
+README.md
