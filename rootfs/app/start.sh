@@ -10,4 +10,4 @@ cd /app
 
 chmod -R 666 config && chmod -R 666 captures
 
-java -Xmx256m -cp ctbrec-server-3.10.7-final.jar -Dctbrec.config.dir=/app/config -Dctbrec.config=server.json ctbrec.recorder.server.HttpServer
+java -Xmx256m -cp ctbrec-server-3.10.9-final.jar -Dctbrec.config.dir=/app/config -Dctbrec.config=server.json ctbrec.recorder.server.HttpServer
