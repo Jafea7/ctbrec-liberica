@@ -7,6 +7,8 @@
   "camsodaPassword": "",
   "camsodaUsername": "",
   "chaturbateBaseUrl": "https://chaturbate.com",
+  "chaturbatePassword": "",
+  "chaturbateUsername": "",
   "chooseStreamQuality": false,
   "colorAccent": "#FFFFFF",
   "colorBase": "#FFFFFF",
@@ -15,11 +17,12 @@
   "disabledSites": [],
   "downloadFilename": "${modelSanitizedName}-${localDateTime}",
   "eventHandlers": [],
+  "fastPlaylistGenerator": true,
   "fc2livePassword": "",
   "fc2liveUsername": "",
   "ffmpegFileSuffix": "ts",
   "ffmpegMergedDownloadArgs": "-c:v copy -c:a copy -movflags faststart -y -f mpegts",
-  "generatePlaylist": false,
+  "generatePlaylist": true,
   "httpPort": 8080,
   "httpSecurePort": 8443,
   "httpServer": "localhost",
@@ -33,6 +36,7 @@
   "livejasminPassword": "",
   "livejasminUsername": "",
   "localRecording": true,
+  "logFFmpegOutput": true,
   "maximumResolution": 8192,
   "maximumResolutionPlayer": 0,
   "mediaPlayer": "/usr/bin/mpv",
@@ -52,6 +56,7 @@
   "modelNotes": {},
   "models": [],
   "modelsIgnored": [],
+  "monitorClipboard": false,
   "onlineCheckIntervalInSecs": 10,
   "onlineCheckSkipsPausedModels": true,
   "overviewUpdateIntervalInSecs": 10,
@@ -60,17 +65,17 @@
   "postProcessingThreads": 1,
   "postProcessors": [
     {
-      "type": "ctbrec.recorder.postprocessing.Script",
-      "config": {
-        "script.params": "${absolutePath}",
-        "script.executable": "/playlist.sh"
-      }
-    },
-    {
       "type": "ctbrec.recorder.postprocessing.Remux",
       "config": {
         "ffmpeg.args": "-c:v copy -c:a copy -bsf:a aac_adtstoasc -f mp4",
         "file.ext": "mp4"
+      }
+    },
+    {
+      "type": "ctbrec.recorder.postprocessing.Script",
+      "config": {
+        "script.params": "${absolutePath}",
+        "script.executable": "/caps.sh"
       }
     }
   ],
@@ -94,6 +99,9 @@
   "showupUsername": "",
   "singlePlayer": true,
   "splitRecordings": 0,
+  "splitRecordingsAfterSecs": 0,
+  "splitRecordingsBiggerThanBytes": 0,
+  "splitStrategy": "DONT",
   "startTab": "Recording",
   "streamatePassword": "",
   "streamateUsername": "",

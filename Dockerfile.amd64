@@ -8,10 +8,11 @@
 FROM bellsoft/liberica-openjdk-alpine:latest-x86_64
 
 # Install ffmpeg
-RUN apk --no-cache add ffmpeg tzdata
+RUN apk --no-cache add bash ffmpeg tzdata
 
-# Copy the rootfs layout including files
+# Copy the rootfs layout
 COPY rootfs/ /
+RUN chmod 777 /*.sh
 
 # Create the volumes
 VOLUME [ "/app/captures", "/app/config" ]
