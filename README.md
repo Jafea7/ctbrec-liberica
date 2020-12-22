@@ -269,11 +269,10 @@ It's called as follows:
 
 ```
 /caps.sh <file> [true]
-```
 
 Arguments are: file = full path to the recording
                true = [optional] uses scripted contact sheet generation always
-
+```
 Regarding the 250MB file size point, below this the script is 2-4 seconds slower than the CTBRec internal command. As the file size increases the script becomes the faster method, as an example:
 
 `Test file #1: 1920x1080, 30fps, 214MB, H264`
