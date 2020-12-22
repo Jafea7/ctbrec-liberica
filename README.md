@@ -249,8 +249,8 @@ Modify the username/password in the server.json file when the container is stopp
 ## Extras
 
 ---
-`/playlist.sh` - A shell script that creates a playlist.m3u8 faster than CTBRec by using ffprobe to obtain the duration of the first segment and applying it to all the following.
-**NOTE**: It only accepts a directory as input, it will exit for anything else.
+`/caps.sh` - A shell script that creates the contact sheet faster than CTBRec by using ffprobe to obtain the duration of the video and using it to skip to each location in the file to capture an image then combines them into the contact sheet.
+By default only applies when a file is over 250MB, for files under 250MB it uses the equivalent of the internal method, (which also uses ffmpeg).
 
 Called as the first step in post-processing as follows:
 ```
@@ -259,11 +259,72 @@ Called as the first step in post-processing as follows:
       "type": "ctbrec.recorder.postprocessing.Script",
       "config": {
         "script.params": "${absolutePath}",
-        "script.executable": "/playlist.sh"
+        "script.executable": "/caps.sh"
       }
     },
 ```
 
-In the settings for the server change `Generate Playlist` to `false`.
-  
+It's called as follows:
+
+```
+/caps.sh <file> [true]
+```
+
+Arguments are: file = full path to the recording
+               true = [optional] uses scripted contact sheet generation always
+
+Regarding the 250MB file size point, below this the script is 2-4 seconds slower than the CTBRec internal command. As the file size increases the script becomes the faster method, as an example:
+
+`Test file #1: 1920x1080, 30fps, 214MB`
+Internal method:
+bash-5.0# time ./caps.sh /app/captures/model1/model1.mp4 
+real    0m8.076s
+user    0m8.053s
+sys     0m0.767s
+
+Scripted method:
+bash-5.0# time ./caps.sh /app/captures/model1/model1.mp4 true
+real    0m10.084s
+user    0m9.358s
+sys     0m1.044s
+
+`Test file #2: 1920x1080, 60fps, 594MB`
+Internal method:
+bash-5.0# time ./caps.sh /app/captures/model2/model2.mp4 
+real    0m14.905s
+user    0m13.754s
+sys     0m2.022s
+
+Scripted method:
+bash-5.0# time ./caps.sh /app/captures/model2/model2.mp4 true
+real    0m11.344s
+user    0m10.194s
+sys     0m1.489s
+
+`Test file #3: 1280x720, 25fps, 7.85GB`
+Internal method:
+bash-5.0# time ./caps.sh /app/captures/model3/model3.mp4
+real    2m54.529s
+user    4m29.855s
+sys     0m32.233s
+
+Scripted method:
+bash-5.0# time ./caps.sh /app/captures/model3/model3.mp4 true
+real    0m14.533s
+user    0m10.289s
+sys     0m1.904s
+
+`Test file #4: 3840x2160, 30fps, 7.36GB`
+Internal method:
+bash-5.0# time ./caps.sh /app/captures/model4/model4.mp4
+real    1m52.629s
+user    1m17.226s
+sys     0m17.132s
+
+Scripted method:
+bash-5.0# time ./caps.sh /app/captures/model4/model4.mp4 true
+real    0m38.142s
+user    0m33.658s
+sys     0m3.454s
+
 ---
