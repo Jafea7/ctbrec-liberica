@@ -243,8 +243,8 @@ Modify the username/password in the server.json file when the container is stopp
 
 **NOTE**: A fresh start of the image will include a default server.json, (if it doesn't exist already), with the following options set:
   - Web Interface set to true.
-  - `playlist.sh`, (see below), followed by a remux is set as post-processing, edit it to add or remove any steps.
-  - The internal playlist generation disabled.
+  - `caps.sh`, (see below), following a remux is set as post-processing, edit it to add or remove any steps.
+  - The internal playlist generation is set as fast.
 
 ## Extras
 
