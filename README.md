@@ -252,7 +252,8 @@ Modify the username/password in the server.json file when the container is stopp
 `/caps.sh` - A shell script that creates the contact sheet faster than CTBRec by using ffprobe to obtain the duration of the video and using it to skip to each location in the file to capture an image then combines them into the contact sheet.
 By default only applies when a file is over 250MB, for files under 250MB it uses the equivalent of the internal method, (which also uses ffmpeg).
 
-Called as the first step in post-processing as follows:
+**NOTE:** Only suitable for Linux systems, (uses Bash).
+
 ```
   "postProcessors": [
     {
