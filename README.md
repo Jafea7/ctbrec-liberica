@@ -276,6 +276,7 @@ Arguments are: file = full path to the recording
 Regarding the 250MB file size point, below this the script is 2-4 seconds slower than the CTBRec internal command. As the file size increases the script becomes the faster method, as an example:
 
 `Test file #1: 1920x1080, 30fps, 214MB`
+
 Internal method:
 bash-5.0# time ./caps.sh /app/captures/model1/model1.mp4 
 real    0m8.076s
@@ -289,6 +290,7 @@ user    0m9.358s
 sys     0m1.044s
 
 `Test file #2: 1920x1080, 60fps, 594MB`
+
 Internal method:
 bash-5.0# time ./caps.sh /app/captures/model2/model2.mp4 
 real    0m14.905s
