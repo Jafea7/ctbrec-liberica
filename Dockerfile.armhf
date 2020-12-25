@@ -12,13 +12,15 @@ RUN apk add --no-cache bash ffmpeg tzdata
 
 # Copy the rootfs layout including files
 COPY rootfs/ /
-RUN chmod 777 /*.sh
 
 # Create the volumes
 VOLUME [ "/app/captures", "/app/config" ]
+
+RUN chmod -R 777 /app/*
+RUN chmod 777 *.sh
 
 # Expose server non-SSL and SSL ports
 EXPOSE 8080 8443
 
 # Initialise
-ENTRYPOINT ["/app/start.sh"]
+ENTRYPOINT ["/app/init.sh"]

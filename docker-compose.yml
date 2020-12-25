@@ -6,6 +6,8 @@ services:
     container_name: "CTBRec-Jafea7"
     environment:
       - TZ=${TZ}
+      - PGID=${PGID}
+      - PUID=${PUID}
     volumes:
       - "${CONFIG}/ctbrec:/app/config"
       - "${MEDIA}:/app/captures"

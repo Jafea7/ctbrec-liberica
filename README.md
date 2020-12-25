@@ -6,7 +6,7 @@
 CTBRec is a streaming media recorder.
 
 ---
-**NOTE**: Volumes have changed since initial version, (due to trying to implement PUID/PGID), see the example `docker run` and `docker-compose.yml` below.
+**NOTE**: Volumes have changed since initial version, (due to implementing PUID/PGID), see the example `docker run` and `docker-compose.yml` below.
 ---
 
 `/root/.config` is now `/app/config`, `/root/captures` is now `/app/captures`
@@ -50,6 +50,8 @@ docker run -d \
     -v /home/ctbrec/media:/app/captures:rw \
     -v /home/ctbrec/.config/ctbrec:/app/config:rw \
     -e TZ=Australia/Sydney \
+    -e PGID=1000 \
+    -e PUID=1000 \
     jafea7/ctbrec-liberica
 ```
 
@@ -57,6 +59,8 @@ Where:
   - `/home/ctbrec/.config/ctbrec`: This is where the application stores its configuration and any files needing persistency.
   - `/home/ctbrec/media`:          This is where the application stores recordings.
   - `TZ`:                          The timezone you want the application to use, files created will be referenced to this.
+  - `PGID`:                        The Group ID that CTBRec will run under.
+  - `PUID`:                        The User ID that CTBRec will run under.
 
 Browse to `http://your-host-ip:8080` to access the CTBRec web interface, (or `https://your-host-ip:8443` if TLS is enabled).
 
@@ -88,6 +92,8 @@ of this parameter has the format `<VARIABLE_NAME>=<VALUE>`.
 | Variable       | Description                                  | Default |
 |----------------|----------------------------------------------|---------|
 |`TZ`| [TimeZone] of the container.  Timezone can also be set by mapping `/etc/localtime` between the host and the container. | `Etc/UTC` |
+|`PGID`| Group ID that will be used to run CTBRec within the container. | `1000` |
+|`PUID`| User ID that will be used to run CTBRec within the container. | `1000` |
 
 ### Data Volumes
 
@@ -154,6 +160,8 @@ services:
     build: .
     environment:
       - TZ=Australia/Sydney
+      - PGID=1000
+      - PUID=1000
     ports:
       - "8080:8080"
       - "8443:8443"
@@ -180,6 +188,12 @@ docker stop jafea7/ctbrec-liberica
 docker rm jafea7/ctbrec-liberica
 ```
   4. Start the container using the `docker run` command.
+
+
+**Updating using docker-compose:**
+```
+docker-compose pull && docker-compose up -d
+```
 
 ### Synology
 
@@ -249,10 +263,12 @@ Modify the username/password in the server.json file when the container is stopp
 ## Extras
 
 ---
-`/caps.sh` - A shell script that creates the contact sheet faster than CTBRec by using ffprobe to obtain the duration of the video and using it to skip to each location in the file to capture an image then combines them into the contact sheet.
+`/caps.sh` - A shell script that creates the contact sheet faster than CTBRec by using ffprobe to obtain the duration of the video, calculating the time offsets of the images, and using that to skip to each location in the file to capture the image, ffmpeg then combines them into the contact sheet.
 By default only applies when a file is over 250MB, for files under 250MB it uses the equivalent of the internal method, (which also uses ffmpeg).
 
-**NOTE:** Only suitable for Linux systems, (uses Bash).
+**NOTES:**
+  1. Only suitable for Linux systems, (uses Bash), if you want to use it independently of the Docker image.
+  2. The created contact sheet will not be associated with the recording, (CTBRec JSON records), so deleting the recording via the interface, (Web/client), will leave the contact sheet behind.
 
 ```
   "postProcessors": [
