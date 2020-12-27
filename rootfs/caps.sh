@@ -18,7 +18,7 @@ if [[ $size -gt 250 ]] || [[ ! -z $fast ]]; then                # if file size g
     name=`echo "image$i.png"`         # image capture name
     `ffmpeg -v quiet -skip_frame nokey -ss $interval -i "$file" -vf select="eq(pict_type\,I)" -vframes 1 "$name"` # skip to calculated position and grab next key frame
   done
-  ffmpeg -v quiet -y -i image%02d.png -vf "scale=317:-1,tile=8x7:color=0x333333:margin=2:padding=2,scale=2560:-1" "$output.jpg" # create contact sheet from images -> file.jpg
+  ffmpeg -v quiet -y -i image%02d.png -vf "scale=317:-1,tile=8x7:color=0x333333:margin=2:padding=2,scale=2560:-1" -qscale:v 3 "$output.jpg" # create contact sheet from images -> file.jpg
   rm -f image*.png                    # remove images
 else
   # size less than 250MB create contact sheet the old way
