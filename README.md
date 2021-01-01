@@ -265,8 +265,8 @@ Modify the username/password in the server.json file when the container is stopp
 ## Extras
 
 ---
-`/caps.sh` - A shell script that creates the contact sheet faster than CTBRec by using ffprobe to obtain the duration of the video, calculating the time offsets of the images, and using that to skip to each location in the file to capture the image, ffmpeg then combines them into the contact sheet.
-By default only applies when a file is over 250MB, for files under 250MB it uses the equivalent of the internal method, (which also uses ffmpeg).
+`/caps.sh` - A shell script that creates the contact sheet faster than CTBRec by using ffprobe to obtain the duration of the video, calculating the time offsets of the images. Using ffmpeg it then skips to each location in the file, captures the next key frame, burns in the timecode, and then combines them into the contact sheet.
+
 
 **NOTES:**
   1. Only suitable for Linux systems, (uses Bash), if you want to use it independently of the Docker image.
@@ -286,10 +286,9 @@ By default only applies when a file is over 250MB, for files under 250MB it uses
 It's called as follows:
 
 ```
-/caps.sh <file> [true]
+/caps.sh <file>
 
 Arguments are: file = full path to the recording
-               true = [optional] uses scripted contact sheet generation always
 ```
 Regarding the 250MB file size point, below this the script is 2-4 seconds slower than the CTBRec internal command. As the file size increases the script becomes the faster method, as an example:
 
