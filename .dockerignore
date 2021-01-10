@@ -9,3 +9,4 @@ Dockerfile*
 docker-compose.yml
 LICENSE
 README.md
+build-push.ps1
