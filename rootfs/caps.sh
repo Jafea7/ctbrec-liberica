@@ -1,7 +1,7 @@
 #!/bin/bash
 # caps.sh ${absoluteFilePath}
 
-# Requirements: ffmpeg
+# Requirements: ffmpeg, ffprobe (part of ffmpeg package)
 
 # https://stackoverflow.com/questions/4632028/how-to-create-a-temporary-directory
 # Deletes temp work directory
