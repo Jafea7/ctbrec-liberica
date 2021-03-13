@@ -14,6 +14,7 @@
   "colorBase": "#FFFFFF",
   "concurrentRecordings": 0,
   "confirmationForDangerousActions": false,
+  "contactsheetTimestampLook": "font=sans-serif:fontcolor=white:fontsize=60:box=1:boxcolor=black@0.5:boxborderw=5",
   "determineResolution": false,
   "disabledSites": [],
   "downloadFilename": "${modelSanitizedName}-${localDateTime}",
@@ -30,8 +31,8 @@
   "httpSecurePort": 8443,
   "httpServer": "localhost",
   "httpTimeout": 10000,
-  "httpUserAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:82.0) Gecko/20100101 Firefox/82.0",
-  "httpUserAgentMobile": "Mozilla/5.0 (Android 9.0; Mobile; rv:82.0) Gecko/82.0 Firefox/82.0",
+  "httpUserAgent": "Mozilla/5.0 (X11; Linux i686; rv:85.0) Gecko/20100101 Firefox/85.0",
+  "httpUserAgentMobile": "Mozilla/5.0 (Android 11; Mobile; rv:68.0) Gecko/68.0 Firefox/85.0",
   "lastDownloadDir": "",
   "livePreviews": false,
   "livejasminBaseUrl": "https://www.livejasmin.com",
@@ -39,7 +40,8 @@
   "livejasminPassword": "",
   "livejasminUsername": "",
   "localRecording": true,
-  "logFFmpegOutput": true,
+  "logFFmpegOutput": false,
+  "logMissedSegments": false,
   "loghlsdlOutput": false,
   "maximumResolution": 8640,
   "maximumResolutionPlayer": 0,
@@ -61,10 +63,11 @@
   "models": [],
   "modelsIgnored": [],
   "monitorClipboard": false,
-  "onlineCheckIntervalInSecs": 10,
+  "onlineCheckIntervalInSecs": 60,
   "onlineCheckSkipsPausedModels": true,
   "overviewUpdateIntervalInSecs": 10,
   "password": "",
+  "playlistRequestTimeout": 2000,
   "postProcessing": "",
   "postProcessingThreads": 1,
   "postProcessors": [
@@ -76,14 +79,26 @@
       }
     },
     {
-      "type": "ctbrec.recorder.postprocessing.Script",
+      "type": "ctbrec.recorder.postprocessing.Rename",
       "config": {
-        "script.params": "${absolutePath}",
-        "script.executable": "/caps.sh"
+        "filename.template": "${modelSanitizedName}_${localDateTime(yyyyMMdd-HHmmss)}.${fileSuffix}"
+      }
+    },
+    {
+      "type": "ctbrec.recorder.postprocessing.CreateContactSheet",
+      "config": {
+        "padding": "2",
+        "burn_in_timestamp": "false",
+        "filename": "${modelSanitizedName}_${localDateTime(yyyyMMdd-HHmmss)}.jpg",
+        "columns": "8",
+        "background": "0x333333",
+        "total_size": "2560",
+        "rows": "7"
       }
     }
   ],
   "proxyType": "DIRECT",
+  "recentlyWatched": false,
   "recordLater": [],
   "recordLaterColumnIds": [
     "preview",
@@ -115,17 +130,17 @@
   "recordedModelsColumnWidths": [
     35.0,
     200.0,
-    322.0,
+    400.0,
     100.0,
     100.0,
     100.0,
     90.0,
-    99.80078125,
+    150.0,
     150.0,
     400.0
   ],
-  "recordedModelsSortColumn": "Priority",
-  "recordedModelsSortType": "DESCENDING",
+  "recordedModelsSortColumn": "",
+  "recordedModelsSortType": "",
   "recordingsColumnIds": [
     "name",
     "date",
@@ -166,7 +181,7 @@
   "thumbWidth": 180,
   "totalModelCountInTitle": true,
   "transportLayerSecurity": true,
-  "updateThumbnails": true,
+  "updateThumbnails": false,
   "useHlsdl": false,
   "username": "",
   "webinterface": true,

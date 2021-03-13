@@ -1,0 +1,73 @@
+{
+   "cap_add" : null,
+   "cap_drop" : null,
+   "cmd" : "",
+   "cpu_priority" : 50,
+   "devices" : null,
+   "enable_publish_all_ports" : false,
+   "enable_restart_policy" : false,
+   "enabled" : false,
+   "entrypoint_default" : "/app/init.sh",
+   "env_variables" : [
+      {
+         "key" : "PATH",
+         "value" : "/usr/lib/jvm/jdk-15.0.1-bellsoft-x86_64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      },
+      {
+         "key" : "LANG",
+         "value" : "en_US.UTF-8"
+      },
+      {
+         "key" : "LANGUAGE",
+         "value" : "en_US.UTF-8:en"
+      },
+      {
+         "key" : "JAVA_HOME",
+         "value" : "/usr/lib/jvm/jdk-15.0.1-bellsoft-x86_64"
+      }
+   ],
+   "exporting" : false,
+   "id" : "37f2532444d3a3e20669b23e9bf778f2c5cad1dced5c04f9e22afe686dbbe1e9",
+   "image" : "jafea7/ctbrec-liberica:latest",
+   "is_ddsm" : false,
+   "is_package" : false,
+   "links" : [],
+   "memory_limit" : 0,
+   "name" : "jafea7-ctbrec-liberica1",
+   "network" : [
+      {
+         "driver" : "bridge",
+         "name" : "bridge"
+      }
+   ],
+   "network_mode" : "bridge",
+   "port_bindings" : [
+      {
+         "container_port" : 8080,
+         "host_port" : 9980,
+         "type" : "tcp"
+      },
+      {
+         "container_port" : 8443,
+         "host_port" : 9943,
+         "type" : "tcp"
+      }
+   ],
+   "privileged" : false,
+   "shortcut" : {
+      "enable_shortcut" : false
+   },
+   "use_host_network" : false,
+   "volume_bindings" : [
+      {
+         "host_volume_file" : "/ctbrec/config",
+         "mount_point" : "/app/config",
+         "type" : "rw"
+      },
+      {
+         "host_volume_file" : "/ctbrec/media",
+         "mount_point" : "/app/captures",
+         "type" : "rw"
+      }
+   ]
+}

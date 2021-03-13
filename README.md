@@ -216,6 +216,13 @@ container image.
   
   **NOTE**:  The container may temporarily disappear from the list while it is re-created.
 
+  **@ayyo** on Discord has provided a JSON file that can be imported to create the container, see **Synology-ctbrec.json**
+---
+  Create a new shared folder called `ctbrec` and two subfolders `media` and `config`, (all lowercase letters).
+  Next open Docker, go to Container, then Settings, and Import this template.
+  The WebUI is on: `https://yournasip:9943/`
+---
+
 ### unRAID
 
 For unRAID, a container image can be updated by following these steps:
@@ -257,104 +264,16 @@ After a fresh install and the web interface is enabled, the default login is:
 
 Modify the username/password in the server.json file when the container is stopped.
 
-**NOTE**: A fresh start of the image will include a default server.json, (if it doesn't exist already), with the following options set:
-  - Web Interface set to true.
-  - `caps.sh`, (see below), following a remux is set as post-processing, edit it to add or remove any steps.
-  - The internal playlist generation is set as fast.
+**NOTE**: A fresh start of the image will include a current default server.json, (if it doesn't exist already), with the following options set:
+  - `"downloadFilename": "${siteSanitizedName}_${modelSanitizedName}-${localDateTime(yyyyMMdd-HHmmss)}"`
+  - `"fastPlaylistGenerator": true`
+  - `"recordingsDirStructure": "ONE_PER_MODEL"`
+  - `"totalModelCountInTitle": true`
+  - `"transportLayerSecurity": true`
+  - `"webinterface": true`
 
-## Extras
+Three post-processing steps will be set:
+  - Remux/Transcode using default parameters.
+  - Rename to the following: `"${siteSanitizedName}_${modelSanitizedName}_${localDateTime(yyyyMMdd-HHmmss)}.${fileSuffix}"`
+  - Create contact sheet: 8x7 images, 2560px wide (No timecode, ffmpeg used in Alpine do not support the filter.)
 
----
-`/caps.sh` - A shell script that creates the contact sheet faster than CTBRec by using ffprobe to obtain the duration of the video, calculating the time offsets of the images. Using ffmpeg it then skips to each location in the file, captures the next key frame, burns in the timecode, and then combines them into the contact sheet.
-
-
-**NOTES:**
-  1. Only suitable for Linux systems, (uses Bash), if you want to use it independently of the Docker image.
-  2. The created contact sheet will not be associated with the recording, (CTBRec JSON records), so deleting the recording via the interface, (Web/client), will leave the contact sheet behind.
-
-```
-  "postProcessors": [
-    {
-      "type": "ctbrec.recorder.postprocessing.Script",
-      "config": {
-        "script.params": "${absolutePath}",
-        "script.executable": "/caps.sh"
-      }
-    },
-```
-
-It's called as follows:
-
-```
-/caps.sh <file>
-
-Arguments are: file = full path to the recording
-```
-Regarding the 250MB file size point, below this the script is 2-4 seconds slower than the CTBRec internal command. As the file size increases the script becomes the faster method, as an example:
-
-`Test file #1: 1920x1080, 30fps, 214MB, H264`
-
-Internal method:
-```
-bash-5.0# time ./caps.sh /app/captures/model1/model1.mp4 
-real    0m8.076s
-user    0m8.053s
-sys     0m0.767s
-```
-Scripted method:
-```
-bash-5.0# time ./caps.sh /app/captures/model1/model1.mp4 true
-real    0m10.084s
-user    0m9.358s
-sys     0m1.044s
-```
-`Test file #2: 1920x1080, 60fps, 594MB, H264`
-
-Internal method:
-```
-bash-5.0# time ./caps.sh /app/captures/model2/model2.mp4 
-real    0m14.905s
-user    0m13.754s
-sys     0m2.022s
-```
-Scripted method:
-```
-bash-5.0# time ./caps.sh /app/captures/model2/model2.mp4 true
-real    0m11.344s
-user    0m10.194s
-sys     0m1.489s
-```
-`Test file #3: 1280x720, 25fps, 7.85GB, H264`
-
-Internal method:
-```
-bash-5.0# time ./caps.sh /app/captures/model3/model3.mp4
-real    2m54.529s
-user    4m29.855s
-sys     0m32.233s
-```
-Scripted method:
-```
-bash-5.0# time ./caps.sh /app/captures/model3/model3.mp4 true
-real    0m14.533s
-user    0m10.289s
-sys     0m1.904s
-```
-`Test file #4: 3840x2160, 30fps, 7.36GB, HEVC`
-
-Internal method:
-```
-bash-5.0# time ./caps.sh /app/captures/model4/model4.mp4
-real    1m52.629s
-user    1m17.226s
-sys     0m17.132s
-```
-Scripted method:
-```
-bash-5.0# time ./caps.sh /app/captures/model4/model4.mp4 true
-real    0m38.142s
-user    0m33.658s
-sys     0m3.454s
-```
-
----

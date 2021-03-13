@@ -16,8 +16,8 @@ COPY rootfs/ /
 # Create the volumes
 VOLUME [ "/app/captures", "/app/config" ]
 
-RUN chmod -R 777 /app/*
-RUN chmod 777 *.sh
+RUN chmod -R 777 /app/* && \
+    chmod 777 *.sh
 
 # Expose server non-SSL and SSL ports
 EXPOSE 8080 8443
