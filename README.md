@@ -1,12 +1,10 @@
 # Docker container for CTBRec server
-[![Docker Image Size](https://img.shields.io/microbadger/image-size/jafea7/ctbrec-liberica)](http://microbadger.com/#/images/jafea7/ctbrec-liberica) [![Build Status](https://drone.le-sage.com/api/badges/jafea7/ctbrec-liberica/status.svg)](https://drone.le-sage.com/jafea7/ctbrec-liberica) [![GitHub Release](https://img.shields.io/github/release/jafea7/ctbrec-liberica.svg)](https://github.com/jafea7/ctbrec-liberica/releases/latest)
-
 ---
 
 CTBRec is a streaming media recorder.
 
 ---
-**NOTE**: Volumes have changed since initial version, (due to implementing PUID/PGID), see the example `docker run` and `docker-compose.yml` below.
+**NOTE**: 4.1.1 is the last version, please see [Jafea7/CTBRec-Debian](https://hub.docker.com/r/jafea7/ctbrec-debian) for subsequent versions.
 ---
 
 `/root/.config` is now `/app/config`, `/root/captures` is now `/app/captures`
