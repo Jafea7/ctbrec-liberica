@@ -7,14 +7,6 @@ CTBRec is a streaming media recorder.
 **NOTE**: 4.1.1 is the last version, please see [Jafea7/CTBRec-Debian](https://hub.docker.com/r/jafea7/ctbrec-debian) for subsequent versions.
 ---
 
-`/root/.config` is now `/app/config`, `/root/captures` is now `/app/captures`
-You will also need to edit your server.json file to change the recordings directory as follows:
-`"recordingsDir": "/app/captures",`.
-
-Your recordings will disappear from the `Recordings` tab if you do not update the volumes, (the recordings themselves will not be deleted, just the record), **and update the corresponding JSON file** with the new paths, eg. `/app/captures/.....` and `/app/config/.....` instead of `/root/captures/.....` and `/root/.config/.....`
-
----
-
 ## Table of Content
 
    * [Docker container for CTBRec server](#docker-container-for-ctbrec-server)
